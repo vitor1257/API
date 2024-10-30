@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirect URI</title>
     <script>
         function getAccessToken() {
-            const hash = window.location.hash;
-            const params = new URLSearchParams(hash.substring(1));
-            const token = params.get('access_token');
 
+            const hash = window.location.hash;
+
+            const params = new URLSearchParams(hash.substring(1)); // Remove o '#'
+
+            const token = params.get('access_token');
             if (token) {
                 localStorage.setItem('access_token', token);
             }
@@ -47,8 +50,10 @@
         window.onload = fetchUserProfile;
     </script>
 </head>
+
 <body>
     <h1>Dados do Usuário</h1>
     <pre id="result">Carregando...</pre>
 </body>
+
 </html>
