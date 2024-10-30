@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirect URI</title>
     <script>
-        function getAccessToken() {
+        async function getAccessToken() {
 
             const hash = window.location.hash;
 
-            const params = new URLSearchParams(hash.substring(1)); // Remove o '#'
+            const params = new URLSearchParams(hash.substring(1)); // remove o '#'
 
             const token = params.get('access_token');
             if (token) {
@@ -47,7 +47,11 @@
             }
         }
 
-        window.onload = fetchUserProfile;
+        window.onload = getAccessToken()
+
+        await fetchUserProfile()
+
+
     </script>
 </head>
 
