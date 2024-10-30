@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página Spotify</title>
     <link rel="stylesheet" href="./CSS/styles.css">
 </head>
+
 <body>
     <div class="container">
         <div class="left-section">
@@ -13,7 +15,8 @@
         </div>
         <div class="right-section">
             <div class="logo">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" alt="Logo do Spotify">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg"
+                    alt="Logo do Spotify">
                 <h1>Spotify</h1>
             </div>
             <button class="spotify-button">Entrar com Spotify</button>
@@ -22,28 +25,24 @@
 
     <script>
 
+        const CLIENT_ID = '169ebb90f2194e909535285fe863c36d';
+        const REDIRECT_URI = 'https://vitor1257.github.io/API/redirect';
+        const AUTH_URL = 'https://accounts.spotify.com/authorize';
+        const SCOPES = 'user-read-private user-read-email';
+
+        function buildAuthUrl(clientId, redirectUri, scopes) {
+            return `${AUTH_URL}?response_type=token&client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${encodeURIComponent(scopes)}`;
+        }
+
+        function login() {
+            const authUrl = buildAuthUrl(CLIENT_ID, REDIRECT_URI, SCOPES);
+            window.location.href = authUrl;
+        }
         document.addEventListener("DOMContentLoaded", () => {
 
 
             document.querySelector(".spotify-button").addEventListener("click", () => {
-
-
-                const CLIENT_ID = '169ebb90f2194e909535285fe863c36d';
-                const REDIRECT_URI = 'https://vitor1257.github.io/API/redirect';
-                const AUTH_URL = 'https://accounts.spotify.com/authorize';
-                const SCOPES = 'user-read-private user-read-email';
-
-                function buildAuthUrl(clientId, redirectUri, scopes) {
-                    return `${AUTH_URL}?response_type=token&client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${encodeURIComponent(scopes)}`;
-                }
-
-                function login() {
-                    const authUrl = buildAuthUrl(CLIENT_ID, REDIRECT_URI, SCOPES);
-                    window.location.href = authUrl;
-                }
-
-
-
+                login()
             })
 
         })
@@ -51,4 +50,5 @@
 
     </script>
 </body>
+
 </html>
