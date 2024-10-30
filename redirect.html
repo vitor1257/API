@@ -47,11 +47,10 @@
             }
         }
 
-        window.onload = getAccessToken()
-
-        await fetchUserProfile()
-
-
+        window.onload = async function () {
+            await getAccessToken();
+            await fetchUserProfile();
+        };
     </script>
 </head>
 
